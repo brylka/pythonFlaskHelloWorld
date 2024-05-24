@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat 'venv\\Scripts\\activate && start /B python app.py'
+                bat 'venv\\Scripts\\activate && python app.py'
             }
         }
     }
