@@ -5,22 +5,21 @@ pipeline {
             steps {
                 script {
                     if (fileExists('venv')) {
-                        sh 'rm -rf venv'
+                        bat 'rmdir /S /Q venv'
                     }
-                    sh 'python3 -m venv venv'
-                    sh 'source venv/bin/activate'
-                    sh 'pip install -r requirements.txt'
+                    bat 'python -m venv venv'
+                    bat '.\\venv\\Scripts\\activate && pip install -r requirements.txt'
                 }
             }
         }
         stage('Test') {
             steps {
-                sh 'source venv/bin/activate && pytest'
+                bat '.\\venv\\Scripts\\activate && pytest'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'source venv/bin/activate && nohup python app.py &'
+                bat '.\\venv\\Scripts\\activate && start /B python app.py'
             }
         }
     }
