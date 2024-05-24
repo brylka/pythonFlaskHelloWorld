@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'source venv/bin/activate && python app.py &'
+                sh 'source venv/bin/activate && nohup python app.py &'
             }
         }
     }
